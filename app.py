@@ -21,8 +21,8 @@ def upload_file():
         selected_features = color_config[request.form.get('hairColor')]
 
         # Create Directory
-        path1 = './data/input'
-        path2 = './data/input/Black_Hair'
+        path1 = './input'
+        path2 = './input/Black_Hair'
         if not os.path.isdir(path2):
             if not os.path.isdir(path1):
                 os.mkdir(path1)
@@ -34,7 +34,7 @@ def upload_file():
         f.save(save_path)
 
         # Run model
-        cmd = "python main.py --mode test --dataset RaFD --image_size 128 --c_dim 3 --sample_dir stargan_celeba/samples --log_dir stargan_celeba/logs --model_save_dir stargan_celeba/models --result_dir static/output --selected_attrs Black_Hair Blond_Hair Brown_Hair --test_iters 50000 --test_iters 50000 --rafd_image_dir data/input"
+        cmd = "python main.py --mode test --dataset RaFD --image_size 128 --c_dim 3 --sample_dir stargan_celeba/samples --log_dir stargan_celeba/logs --model_save_dir stargan_celeba/models --result_dir static/output --selected_attrs Black_Hair Blond_Hair Brown_Hair --test_iters 50000 --test_iters 50000 --rafd_image_dir input"
         subprocess.run(cmd.split())
         os.remove(save_path)
 
